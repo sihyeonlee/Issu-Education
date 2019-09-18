@@ -8,6 +8,7 @@ from ui_Issu import Ui_Main_Issu
 import openpyxl
 import json
 import sys
+import time
 
 
 class Issu(QMainWindow):
@@ -17,6 +18,9 @@ class Issu(QMainWindow):
         self.ui = Ui_Main_Issu()
         self.ui.setupUi(self)
 
+        self.ui.button_search.setShortcut('Return')
+        self.ui.button_insert.setShortcut('Ctrl+Return')
+
         # declaration class variable
         self.auth_key = '302445398d5248c9b30d8581061a79b9'
         self.dic_location = {'서울특별시교육청': 'B10', '부산광역시교육청': 'C10', '대구광역시교육청': 'D10', '인천광역시교육청': 'E10',
@@ -25,18 +29,57 @@ class Issu(QMainWindow):
                              '전라남도교육청': 'Q10', '경상북도교육청': 'R10', '경상남도교육청': 'S10', '제주도교육청': 'T10'}
 
     def reset(self):
-        self.ui.table_output.clearContents()
+        current_row_cnt = self.ui.table_output.rowCount()
+
+        for i in range(1, current_row_cnt + 1):
+            self.ui.table_output.removeRow(current_row_cnt - i)
 
     def output(self):
-        wb = openpyxl.Workbook()
-        sheet = wb.active()
+        current_row_cnt = self.ui.table_output.rowCount()
 
-        dic_cell = {'번호': ['num_cell', 'A2'],
-                    '학교명': ['scname_cell', 'B2'],
-                    '관할지역청': ['loc_cell', 'C2'],
-                    '공사립': ['sort_cell', 'D2'],
-                    '우편번호': ['post_cell', 'E2'],
-                    '도로명주소': ['juso_cell', 'F2']}
+        if current_row_cnt is 0:
+            return -1
+
+        wb = openpyxl.Workbook()
+        sheet = wb.active
+
+        dic_cell = {'번호': ['A', 'A2', 0],
+                    '학교명': ['B', 'B2', 1],
+                    '관할지역청': ['C', 'C2', 2],
+                    '공/사립': ['D', 'D2', 3],
+                    '우편번호': ['E', 'E2', 4],
+                    '도로명주소': ['F', 'F2', 5]}
+
+        cell_list = list(dic_cell.keys())
+        # print(cell_list)
+
+        for i in cell_list:
+            sheet[dic_cell[i][1]] = i
+
+        for i in range(0, current_row_cnt):
+            for j in cell_list:
+                # print(i, j)
+                cell = dic_cell[j][0] + str(3 + i)
+                sheet[cell] = self.ui.table_output.item(i, dic_cell[j][2]).text()
+
+        dims = {}
+        dic_alphabet = {1: 'A', 2: 'B', 3: 'C', 4: 'D', 5: 'E', 6: 'F'}
+
+        for row in sheet.rows:
+            for cell in row:
+                if cell.value:
+                    dims[dic_alphabet[cell.column]] = max((dims.get(cell.column, 0), len(str(cell.value))))
+
+        # print(dims)
+
+        for col, value in dims.items():
+            # print(type(value))
+            sheet.column_dimensions[col].width = int(value * 4)
+
+        now = time.localtime()
+
+        file_name = "학교주소명단_" + str(now.tm_mday) + str(now.tm_hour) + str(now.tm_min) + '.xlsx'
+        wb.save(file_name)
 
     def delete(self):
         del_item = self.ui.table_output.selectedItems()
@@ -87,7 +130,7 @@ class Issu(QMainWindow):
 
         root_json = json.loads(response_body)
 
-        print(root_json)
+        # print(root_json)
 
         try:
             result_code = root_json['RESULT']
@@ -103,7 +146,7 @@ class Issu(QMainWindow):
 
         data_body = root_json['schoolInfo'][1]['row']
 
-        print(data_body)
+        # print(data_body)
 
         for i in range(0, result_cnt):
             if i > 99:
@@ -116,7 +159,7 @@ class Issu(QMainWindow):
             dic_result['우편번호'].append(data_body[i]['ORG_RDNZC'])
             dic_result['도로명주소'].append(data_body[i]['ORG_RDNMA'])
 
-        print(dic_result)
+        # print(dic_result)
 
         str_result = '검색 결과 : ' + str(result_cnt) + '개'
 
@@ -126,10 +169,10 @@ class Issu(QMainWindow):
         diff_row_cnt = result_cnt - row_cnt
 
         if diff_row_cnt < 0:
-            print(">>")
+            # print(">>")
             for i in range(1, abs(diff_row_cnt) + 1):
                 self.ui.table_result.removeRow(row_cnt - i)
-                print(i)
+                # print(i)
         else:
             for i in range(0, abs(diff_row_cnt)):
                 self.ui.table_result.insertRow(row_cnt + i)

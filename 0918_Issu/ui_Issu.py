@@ -3,7 +3,7 @@
 # Form implementation generated from reading ui file 'Issu.ui',
 # licensing of 'Issu.ui' applies.
 #
-# Created: Wed Sep 18 23:42:40 2019
+# Created: Thu Sep 19 00:58:33 2019
 #      by: pyside2-uic  running on PySide2 5.12.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -13,13 +13,17 @@ from PySide2 import QtCore, QtGui, QtWidgets
 class Ui_Main_Issu(object):
     def setupUi(self, Main_Issu):
         Main_Issu.setObjectName("Main_Issu")
-        Main_Issu.resize(1012, 692)
+        Main_Issu.resize(1012, 657)
+        font = QtGui.QFont()
+        Main_Issu.setFont(font)
+        Main_Issu.setStyleSheet("")
         self.centralwidget = QtWidgets.QWidget(Main_Issu)
         self.centralwidget.setObjectName("centralwidget")
         self.frame = QtWidgets.QFrame(self.centralwidget)
         self.frame.setGeometry(QtCore.QRect(10, 10, 991, 61))
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setLineWidth(3)
         self.frame.setObjectName("frame")
         self.label = QtWidgets.QLabel(self.frame)
         self.label.setGeometry(QtCore.QRect(10, 20, 91, 21))
@@ -62,9 +66,18 @@ class Ui_Main_Issu(object):
         self.label_2.setObjectName("label_2")
         self.button_search = QtWidgets.QPushButton(self.frame)
         self.button_search.setGeometry(QtCore.QRect(900, 10, 75, 41))
+        self.button_search.setAutoDefault(True)
+        self.button_search.setDefault(True)
         self.button_search.setObjectName("button_search")
         self.input_scname = QtWidgets.QLineEdit(self.frame)
+        self.input_scname.setEnabled(True)
         self.input_scname.setGeometry(QtCore.QRect(310, 15, 570, 30))
+        font = QtGui.QFont()
+        font.setFamily("맑은 고딕")
+        self.input_scname.setFont(font)
+        self.input_scname.setAcceptDrops(True)
+        self.input_scname.setFrame(True)
+        self.input_scname.setDragEnabled(False)
         self.input_scname.setObjectName("input_scname")
         self.frame_2 = QtWidgets.QFrame(self.centralwidget)
         self.frame_2.setGeometry(QtCore.QRect(10, 80, 991, 201))
@@ -82,7 +95,7 @@ class Ui_Main_Issu(object):
         self.table_result.setTabKeyNavigation(True)
         self.table_result.setDragDropOverwriteMode(False)
         self.table_result.setAlternatingRowColors(True)
-        self.table_result.setSelectionMode(QtWidgets.QAbstractItemView.ExtendedSelection)
+        self.table_result.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
         self.table_result.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
         self.table_result.setTextElideMode(QtCore.Qt.ElideMiddle)
         self.table_result.setHorizontalScrollMode(QtWidgets.QAbstractItemView.ScrollPerItem)
@@ -189,7 +202,7 @@ class Ui_Main_Issu(object):
         self.table_output.setTabKeyNavigation(True)
         self.table_output.setDragDropOverwriteMode(False)
         self.table_output.setAlternatingRowColors(True)
-        self.table_output.setSelectionMode(QtWidgets.QAbstractItemView.ExtendedSelection)
+        self.table_output.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
         self.table_output.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
         self.table_output.setTextElideMode(QtCore.Qt.ElideMiddle)
         self.table_output.setHorizontalScrollMode(QtWidgets.QAbstractItemView.ScrollPerItem)
@@ -233,14 +246,20 @@ class Ui_Main_Issu(object):
         self.button_reset = QtWidgets.QPushButton(self.centralwidget)
         self.button_reset.setGeometry(QtCore.QRect(830, 610, 75, 41))
         self.button_reset.setObjectName("button_reset")
+        self.label_5 = QtWidgets.QLabel(self.centralwidget)
+        self.label_5.setGeometry(QtCore.QRect(20, 619, 191, 21))
+        font = QtGui.QFont()
+        font.setFamily("맑은 고딕")
+        font.setPointSize(8)
+        self.label_5.setFont(font)
+        self.label_5.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.label_5.setStyleSheet("color: rgb(221, 221, 221);")
+        self.label_5.setObjectName("label_5")
         Main_Issu.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(Main_Issu)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1012, 21))
         self.menubar.setObjectName("menubar")
         Main_Issu.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(Main_Issu)
-        self.statusbar.setObjectName("statusbar")
-        Main_Issu.setStatusBar(self.statusbar)
 
         self.retranslateUi(Main_Issu)
         QtCore.QObject.connect(self.button_search, QtCore.SIGNAL("clicked()"), Main_Issu.search)
@@ -251,7 +270,7 @@ class Ui_Main_Issu(object):
         QtCore.QMetaObject.connectSlotsByName(Main_Issu)
 
     def retranslateUi(self, Main_Issu):
-        Main_Issu.setWindowTitle(QtWidgets.QApplication.translate("Main_Issu", "MainWindow", None, -1))
+        Main_Issu.setWindowTitle(QtWidgets.QApplication.translate("Main_Issu", "Issu-Education V1.0", None, -1))
         self.label.setText(QtWidgets.QApplication.translate("Main_Issu", "시도교육청", None, -1))
         self.combo_location.setCurrentText(QtWidgets.QApplication.translate("Main_Issu", "서울특별시교육청", None, -1))
         self.combo_location.setItemText(0, QtWidgets.QApplication.translate("Main_Issu", "서울특별시교육청", None, -1))
@@ -295,4 +314,5 @@ class Ui_Main_Issu(object):
         self.button_insert.setText(QtWidgets.QApplication.translate("Main_Issu", "∨", None, -1))
         self.button_output.setText(QtWidgets.QApplication.translate("Main_Issu", "내보내기", None, -1))
         self.button_reset.setText(QtWidgets.QApplication.translate("Main_Issu", "초기화", None, -1))
+        self.label_5.setText(QtWidgets.QApplication.translate("Main_Issu", "sihyeon.dev@gmail.com / 이시현", None, -1))
 

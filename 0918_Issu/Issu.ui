@@ -7,11 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>1012</width>
-    <height>692</height>
+    <height>657</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <kerning>false</kerning>
+   </font>
+  </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Issu-Education V1.0</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QFrame" name="frame">
@@ -29,6 +37,9 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
+    <property name="lineWidth">
+     <number>3</number>
+    </property>
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
@@ -42,6 +53,7 @@
       <font>
        <family>맑은 고딕</family>
        <pointsize>12</pointsize>
+       <kerning>true</kerning>
       </font>
      </property>
      <property name="focusPolicy">
@@ -63,6 +75,7 @@
      <property name="font">
       <font>
        <family>맑은 고딕</family>
+       <kerning>true</kerning>
       </font>
      </property>
      <property name="currentText">
@@ -167,6 +180,7 @@
       <font>
        <family>맑은 고딕</family>
        <pointsize>12</pointsize>
+       <kerning>true</kerning>
       </font>
      </property>
      <property name="focusPolicy">
@@ -188,8 +202,17 @@
      <property name="text">
       <string>검색</string>
      </property>
+     <property name="autoDefault">
+      <bool>true</bool>
+     </property>
+     <property name="default">
+      <bool>true</bool>
+     </property>
     </widget>
     <widget class="QLineEdit" name="input_scname">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>310</x>
@@ -197,6 +220,21 @@
        <width>570</width>
        <height>30</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>맑은 고딕</family>
+       <kerning>false</kerning>
+      </font>
+     </property>
+     <property name="acceptDrops">
+      <bool>true</bool>
+     </property>
+     <property name="frame">
+      <bool>true</bool>
+     </property>
+     <property name="dragEnabled">
+      <bool>false</bool>
      </property>
     </widget>
    </widget>
@@ -228,6 +266,7 @@
       <font>
        <family>맑은 고딕</family>
        <pointsize>10</pointsize>
+       <kerning>true</kerning>
       </font>
      </property>
      <property name="verticalScrollBarPolicy">
@@ -246,7 +285,7 @@
       <bool>true</bool>
      </property>
      <property name="selectionMode">
-      <enum>QAbstractItemView::ExtendedSelection</enum>
+      <enum>QAbstractItemView::SingleSelection</enum>
      </property>
      <property name="selectionBehavior">
       <enum>QAbstractItemView::SelectRows</enum>
@@ -535,6 +574,7 @@
       <font>
        <family>맑은 고딕</family>
        <pointsize>12</pointsize>
+       <kerning>true</kerning>
       </font>
      </property>
      <property name="focusPolicy">
@@ -573,6 +613,7 @@
       <font>
        <family>맑은 고딕</family>
        <pointsize>10</pointsize>
+       <kerning>true</kerning>
       </font>
      </property>
      <property name="verticalScrollBarPolicy">
@@ -591,7 +632,7 @@
       <bool>true</bool>
      </property>
      <property name="selectionMode">
-      <enum>QAbstractItemView::ExtendedSelection</enum>
+      <enum>QAbstractItemView::SingleSelection</enum>
      </property>
      <property name="selectionBehavior">
       <enum>QAbstractItemView::SelectRows</enum>
@@ -728,6 +769,32 @@
      <string>초기화</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>619</y>
+      <width>191</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>8</pointsize>
+      <kerning>true</kerning>
+     </font>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(221, 221, 221);</string>
+    </property>
+    <property name="text">
+     <string>sihyeon.dev@gmail.com / 이시현</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -739,7 +806,6 @@
     </rect>
    </property>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections>
