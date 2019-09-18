@@ -1,3 +1,7 @@
 \venv/
 \.idea/
 auth-key.txt
+
+pip/
+
+0918_Issu/__pycache__/
