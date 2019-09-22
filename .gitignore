@@ -5,3 +5,11 @@ auth-key.txt
 pip/
 
 0918_Issu/__pycache__/
+
+0918_Issu/build/
+
+*.spec
+
+0922_Issu/__pycache__/
+
+0922_Issu/build/
